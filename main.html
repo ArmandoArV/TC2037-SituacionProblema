@@ -1,0 +1,56 @@
+<html><head>
+        <style>
+            body { font-family: Helvetica; background-color: #121212; color: #ffffff; }
+            .code-container { margin: 0 auto; width: 80%; }
+            .h1-title { text-align: center; }
+            .code-tag { font-size: 20px; white-space: pre-wrap; }
+            .identifier { color: #de6b74; }
+            .keyword { color: #c678dd; }
+            .operator { color: #e5c07b; }
+            .delimiter { color: #a4abb8; }
+            .literal { color: #98c379; }
+            .comment { color: #5c6370; font-style: italic; }
+            .special-symbol { color: #e06c75; }
+            .dashboardContainer { margin: 0 auto; width: 80%; }
+            table { border-collapse: collapse; margin-top: 10px; }
+            th, td { border: 1px solid #ffffff; padding: 5px; }
+            th { background-color: #383838; }
+            td:first-child { font-weight: bold; }
+        </style>
+    </head><body>
+        <h1 class="h1-title">Syntax Higlighter</h1>
+        <div class="code-container">
+            <code class="code-tag">b=7
+
+a = 32.4 *(-8.6 - b)/       6.1E-8
+
+d = a ^ b # Esto es un comentario
+
+if x > 0:
+    print("x es positivo")
+elif x < 0:
+    print("x es negativo")
+else:
+    print("x es cero")
+
+for i in range(2):
+    print("hola")</code>
+        </div>
+        <div class="dashboardContainer">
+            <div class="dashboardBottom">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Value</th>
+                            <th>Token</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+    <tr key="0"><td>b</td><td>identifier</td></tr><tr key="1"><td>b</td><td>identifier</td></tr><tr key="2"><td>b</td><td>identifier</td></tr><tr key="3"><td>=</td><td>operator</td></tr><tr key="4"><td>=</td><td>operator</td></tr><tr key="5"><td>a</td><td>identifier</td></tr><tr key="6"><td>a</td><td>identifier</td></tr><tr key="7"><td>*</td><td>operator</td></tr><tr key="8"><td>(</td><td>delimiter</td></tr><tr key="9"><td>-</td><td>operator</td></tr><tr key="10"><td>)</td><td>delimiter</td></tr><tr key="11"><td>)</td><td>delimiter</td></tr><tr key="12"><td>)</td><td>delimiter</td></tr><tr key="13"><td>)</td><td>delimiter</td></tr><tr key="14"><td>/</td><td>operator</td></tr><tr key="15"><td>d</td><td>identifier</td></tr><tr key="16"><td> Esto es un comentario</td><td>comment</td></tr><tr key="17"><td>Esto</td><td>identifier</td></tr><tr key="18"><td>es</td><td>identifier</td></tr><tr key="19"><td>es</td><td>identifier</td></tr><tr key="20"><td>es</td><td>identifier</td></tr><tr key="21"><td>es</td><td>identifier</td></tr><tr key="22"><td>un</td><td>identifier</td></tr><tr key="23"><td>comentario</td><td>identifier</td></tr><tr key="24"><td>i</td><td>identifier</td></tr><tr key="25"><td>if</td><td>identifier</td></tr><tr key="26"><td>if</td><td>keyword</td></tr><tr key="27"><td>x</td><td>identifier</td></tr><tr key="28"><td>x</td><td>identifier</td></tr><tr key="29"><td>:</td><td>delimiter</td></tr><tr key="30"><td>print</td><td>identifier</td></tr><tr key="31"><td>print</td><td>identifier</td></tr><tr key="32"><td>print</td><td>identifier</td></tr><tr key="33"><td>print</td><td>identifier</td></tr><tr key="34"><td>print</td><td>keyword</td></tr><tr key="35"><td>print</td><td>keyword</td></tr><tr key="36"><td>print</td><td>keyword</td></tr><tr key="37"><td>print</td><td>keyword</td></tr><tr key="38"><td>in</td><td>identifier</td></tr><tr key="39"><td>in</td><td>keyword</td></tr><tr key="40"><td>elif</td><td>identifier</td></tr><tr key="41"><td>elif</td><td>keyword</td></tr><tr key="42"><td>else</td><td>identifier</td></tr><tr key="43"><td>else</td><td>keyword</td></tr><tr key="44"><td>for</td><td>identifier</td></tr><tr key="45"><td>for</td><td>keyword</td></tr><tr key="46"><td>range</td><td>identifier</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </body>
+    </html>
+    
