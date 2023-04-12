@@ -1,5 +1,6 @@
 import re
 
+
 def generate_html_output(code, token_list):
     css_styles = '''
         <style>
@@ -21,10 +22,28 @@ def generate_html_output(code, token_list):
             td:first-child { font-weight: bold; }
         </style>
     '''
+    # Match the indentation spaces in the code
+    indentation_spaces = re.match('^(\s+)', code)
+    if indentation_spaces:
+        indentation_spaces = indentation_spaces.group(1)
+    else:
+        indentation_spaces = ''
+
+    # Indentation of each code line will be removed and replaced with a <span> tag
+    # with class 'indentation'
+    code_lines = code.split('\n')
+    code_block = ''
+    for line in code_lines:
+        # Remove the indentation spaces and replace it with a <span> tag with class 'indentation'
+        line = line.replace(indentation_spaces, f'<span class="indentation">{indentation_spaces}</span>')
+
+        # Append the line to the code block
+        code_block += f'{line}\n'
+
     html_body = f'''
         <h1 class="h1-title">Syntax Higlighter</h1>
         <div class="code-container">
-            <code class="code-tag">{code}</code>
+            <code class="code-tag">{code_block}</code>
         </div>
         <div class="dashboardContainer">
             <div class="dashboardBottom">

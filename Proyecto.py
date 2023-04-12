@@ -20,6 +20,7 @@ def main():
     token_list += [(value, 'operator') for value in find_operators(text)]
     token_list += [(value, 'delimiter') for value in find_delimiters(text)]
     token_list += [(value, 'literal') for value in find_literals(text)]
+    token_list += [(value, 'special-symbol') for value in find_specials(text)]
     token_list += [(value, 'comment') for value in find_comments(text)]
     token_list.sort(key=lambda x: text.find(x[0]))
     html_output = generate_html_output(text, token_list)
