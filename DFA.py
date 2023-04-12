@@ -17,6 +17,14 @@ class Lexer:
         self.current_position = 0
         self.tokens = []
 
+    def match_next(self):
+        for matcher in matchers:
+            match = matcher(self.input_string, self.current_position)
+            if match:
+                self.current_position += len(match["lexeme"])
+                return match
+        return None
+
     def tokenize(self):
         while self.current_position < len(self.input_string):
             match = self.match_next()
@@ -26,14 +34,6 @@ class Lexer:
             else:
                 self.current_position += 1
         return self.tokens
-
-    def match_next(self):
-        for matcher in matchers:
-            match = matcher(self.input_string, self.current_position)
-            if match:
-                self.current_position += len(match["lexeme"])
-                return match
-        return None
 
 
 def match_special(input_string, current_position):
@@ -51,8 +51,7 @@ def match_operator(input_string, current_position):
 
 
 def match_literal(input_string, current_position):
-    match = re.match(r'\B(True|False|None|[-]?\d+[\.]?\d*(?:[eE][-+]?\d+)?)\B(?![\'"])',
-                     input_string[current_position:])
+    match = re.match(r'\b(-?\d+(\.\d+)?([eE][+-]?\d+)?)\b', input_string[current_position:])
     if match:
         return {"type": "LITERAL", "lexeme": match.group()}
     return None
@@ -69,7 +68,7 @@ def match_keyword(input_string, current_position):
 
 def match_identifier(input_string, current_position):
     match = re.match(
-        r'(?<!["\'])\b(?!False|None|True|print|in|else|elif|if|range|for)([a-zA-Z_][a-zA-Z0-9_]*)\b(?!["\'])',
+        r'(?<![\w"])(?!False|None|True|print|in|else|elif|if|range|for)([a-zA-Z_][a-zA-Z0-9_]*)\b(?![\w"])',
         input_string[current_position:])
     if match:
         return {"type": "IDENTIFIER", "lexeme": match.group()}
@@ -90,6 +89,12 @@ def match_comment(input_string, current_position):
     return None
 
 
+def match_exponentiation(input_string, current_position):
+    if input_string.startswith("^", current_position):
+        return {"type": "OPERATOR", "lexeme": "^"}
+    return None
+
+
 matchers = [
     match_special,
     match_operator,
@@ -98,10 +103,11 @@ matchers = [
     match_identifier,
     match_delimiter,
     match_comment,
+    match_exponentiation,
 ]
 
 specials = {"(", ")", "[", "]", "{", "}", ",", ";", ":"}
-operators = {"+", "-", "*", "/", "%", "**", "=", "=="}
+operators = {"+", "-", "*", "/", "%", "**", "=", "==", "^"}
 delimiters = specials | operators | {" ", "\n", "\t", "\r"}
 
 
